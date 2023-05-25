@@ -1,6 +1,7 @@
 package jaejung.springprac.repository;
 
 import jaejung.springprac.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 

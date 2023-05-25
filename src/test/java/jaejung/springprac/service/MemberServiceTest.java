@@ -5,17 +5,28 @@ import jaejung.springprac.repository.MemberRepository;
 import jaejung.springprac.repository.MemoryMemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class MemberServiceTest {
-    MemberService memberService = new MemberService();
-    MemoryMemberRepository memoryMemberRepository = new MemoryMemberRepository();
+    MemberService memberService;
+    MemoryMemberRepository memoryMemberRepository;
+
+    @BeforeEach
+    public void BeforeEach(){
+        this.memoryMemberRepository = new MemoryMemberRepository();
+        this.memberService = new MemberService(this.memoryMemberRepository);
+        System.out.println("Test> this.memberService.hashCode(): "+this.memberService.hashCode());
+        System.out.println("Test> this.memberMemberRepository.hashCode(): "+this.memoryMemberRepository.hashCode());
+        System.out.println("-------------------");
+    }
     @AfterEach
-    public void each(){
+    public void afterEach(){
         memoryMemberRepository.clearStore();
     }
+
     @Test
     void join() {
         Member member = new Member();
