@@ -40,6 +40,7 @@ class MemberServiceTest {
 
     @Test
     public void duplicateMember(){
+        System.out.println("helloworld");
         Member member1 = new Member();
         member1.setName("spring");
         Member member2 = new Member();

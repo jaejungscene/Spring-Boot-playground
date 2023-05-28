@@ -4,18 +4,24 @@ import jaejung.springprac.domain.Member;
 import jaejung.springprac.repository.MemberRepository;
 import jaejung.springprac.repository.MemoryMemberRepository;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
+//import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
-@Transactional // 각각의 Test가 끝나면 rollback 데이터가 DB에 반영되지 않도록 해준다.
+//@Transactional // 각각의 Test가 끝나면 rollback 데이터가 DB에 반영되지 않도록 해준다.
 public class MemberServiceIntegrationTest {
     @Autowired MemberService memberService;
     @Autowired MemberRepository memberRepository;
+
+    @AfterEach
+    public void afterEach(){
+        this.memberRepository.clearStore();
+    }
 
     @Test
     void join() {
@@ -37,6 +43,7 @@ public class MemberServiceIntegrationTest {
 
         memberService.join(member1);
         IllegalStateException e = assertThrows(IllegalStateException.class, () -> memberService.join(member2));
+        System.out.println(memberService.findMembers());
         Assertions.assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다.");
     }
 }
