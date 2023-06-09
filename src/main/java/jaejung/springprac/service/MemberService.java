@@ -20,8 +20,9 @@ public class MemberService {
                 + "< " + this.memberRepository.hashCode() + " ,  "
                 + this.memberRepository.getClass() + " >");
     }
+
     /**
-     * 회원가입
+     * Register New User
      */
     public Long join(Member member){
         // 같은 이름이 있는 중복 회원X

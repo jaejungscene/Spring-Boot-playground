@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class HellowController {
+public class HelloController {
     @GetMapping("hello")
     public String hello(Model model){
         model.addAttribute("data", "hello!!");
@@ -41,7 +41,7 @@ public class HellowController {
     @GetMapping("hello-api")
     @ResponseBody
     public Data helloapi(@RequestParam("name") String name){
-        HellowController.Data data = new HellowController.Data("jaejung");
+        HelloController.Data data = new HelloController.Data("jaejung");
         data.setName(name);
         return data;
     }
