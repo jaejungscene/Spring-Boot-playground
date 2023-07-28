@@ -1,11 +1,15 @@
 package jaejung.springprac.repository;
 
-import jaejung.springprac.domain.Member;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Repository;
+
+import jaejung.springprac.domain.member.Member;
+
+// @Repository
 public class JpaMemberRepository implements MemberRepository{
     private final EntityManager em;
 

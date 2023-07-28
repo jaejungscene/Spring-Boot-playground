@@ -18,22 +18,22 @@ public class SpringConfig {
     @PersistenceContext
     private EntityManager em;
 
-    private final MemberRepository memberRepository;
+    // private final MemberRepository memberRepository;
     // private final DataSource dataSource;
 
-    @Autowired
-    public SpringConfig(MemberRepository memberRepository){
-        this.memberRepository = memberRepository;
-    }
+    // @Autowired
+    // public SpringConfig(MemberRepository memberRepository){
+    //     this.memberRepository = memberRepository;
+    // }
 
 //    public SpringConfig(DataSource dataSource){
 //        this.dataSource = dataSource;
 //    }
 
-    @Bean
-    public MemberService memberService(){
-        return new MemberService(memberRepository());
-    }
+    // @Bean
+    // public MemberService memberService(){
+    //     return new MemberService(memberRepository());
+    // }
 
 //    @Bean
 //    public TimeTraceAop timeTraceAop(){

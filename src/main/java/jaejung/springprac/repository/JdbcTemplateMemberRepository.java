@@ -1,12 +1,14 @@
 package jaejung.springprac.repository;
 
-import jaejung.springprac.domain.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.stereotype.Repository;
+
+import jaejung.springprac.domain.member.Member;
 
 import javax.sql.DataSource;
 import java.util.HashMap;
@@ -15,6 +17,7 @@ import java.util.Map;
 import java.util.Optional;
 
 
+// @Repository
 public class JdbcTemplateMemberRepository implements MemberRepository{
     @Autowired
     private JdbcTemplate jdbcTemplate;

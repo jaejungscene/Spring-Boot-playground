@@ -1,8 +1,9 @@
 package jaejung.springprac.repository;
 
-import jaejung.springprac.domain.Member;
 import java.util.List;
 import java.util.Optional;
+
+import jaejung.springprac.domain.member.Member;
 
 public interface MemberRepository {
     Member save(Member member);

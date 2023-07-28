@@ -1,6 +1,6 @@
 package jaejung.springprac.service;
 
-import jaejung.springprac.domain.Member;
+import jaejung.springprac.domain.member.Member;
 import jaejung.springprac.repository.MemberRepository;
 import jaejung.springprac.repository.MemoryMemberRepository;
 import org.assertj.core.api.Assertions;

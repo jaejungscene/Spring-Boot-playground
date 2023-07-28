@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class HellowController {
+public class TestController {
+
     @GetMapping("hello")
     public String hello(Model model){
         model.addAttribute("data", "hello!!");
@@ -31,35 +32,4 @@ public class HellowController {
         model.addAttribute("name", name);
         return "hello-mvc";
     }
-
-    @GetMapping("hello-string")
-    @ResponseBody
-    public int helloString(@RequestParam("name") String name){
-        return 12;
-    }
-
-    @GetMapping("hello-api")
-    @ResponseBody
-    public Data helloapi(@RequestParam("name") String name){
-        HellowController.Data data = new HellowController.Data("jaejung");
-        data.setName(name);
-        return data;
-    }
-    static class Data{
-        private String name;
-
-        public Data(String name) {
-            this.name = name;
-        }
-
-        public String getName() {
-            return this.name;
-        }
-
-        public void setName(String name){
-            this.name = name;
-        }
-
-    }
-
 }
