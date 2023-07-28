@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import javax.sql.DataSource;
@@ -13,12 +14,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class JdbcTemplateMemberRepository implements MemberRepository{
-    private final JdbcTemplate jdbcTemplate;
 
-    public JdbcTemplateMemberRepository(DataSource datasource) {
-        this.jdbcTemplate = new JdbcTemplate(datasource);
-    }
+public class JdbcTemplateMemberRepository implements MemberRepository{
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
+    // public JdbcTemplateMemberRepository(DataSource datasource) {
+    //     this.jdbcTemplate = new JdbcTemplate(datasource);
+    // }
 
     @Override
     public Member save(Member member) {

@@ -1,4 +1,4 @@
-package jaejung.springprac.service;
+package jaejung.springprac;
 
 import jaejung.springprac.domain.Member;
 import jaejung.springprac.repository.MemoryMemberRepository;

@@ -19,6 +19,7 @@ public class SpringConfig {
     private EntityManager em;
 
     private final MemberRepository memberRepository;
+    // private final DataSource dataSource;
 
     @Autowired
     public SpringConfig(MemberRepository memberRepository){
@@ -44,8 +45,8 @@ public class SpringConfig {
     public MemberRepository memberRepository(){
 //        return new MemoryMemberRepository();
 //        return new JdbcMemberRepository(dataSource);
-//        return new JdbcTemplateMemberRepository(dataSource);
-        return new JpaMemberRepository(em);
+       return new JdbcTemplateMemberRepository();
+        // return new JpaMemberRepository(em);
     }
 
 }
