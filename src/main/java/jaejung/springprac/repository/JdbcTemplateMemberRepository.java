@@ -8,9 +8,12 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
+import jaejung.springprac.domain.Gender;
 import jaejung.springprac.domain.member.Member;
 
 import javax.sql.DataSource;
+
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,9 +61,15 @@ public class JdbcTemplateMemberRepository implements MemberRepository{
 
     private RowMapper<Member> memberRowMapper() {
         return (rs, rowNum) -> {
-            Member member = new Member();
-            member.setId(rs.getLong("id"));
-            member.setName(rs.getString("name"));
+            Member member = Member.builder()
+                                .id(rs.getLong("id"))
+                                .name(rs.getString("name"))
+                                .age(rs.getInt("age"))
+//                                .birthDate(rs.getObject("birthDate", Date.class))
+                                .birthDate(rs.getString("birthDate"))
+//                                .gender(rs.getObject("gender", Gender.class))
+                                .gender(rs.getString("gender"))
+                                .build();
             return member;
         }; }
 }

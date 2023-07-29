@@ -9,14 +9,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+
 import javax.sql.DataSource;
 
 @Configuration
 public class SpringConfig {
+
+//    @Bean
+//    public GroupedOpenApi publicApi() {
+//        return GroupedOpenApi.builder()
+//                .group("v1-definition")
+//                .pathsToMatch("/**")
+//                .build();
+//    }
+//    @Bean
+//    public OpenAPI springShopOpenAPI() {
+//        return new OpenAPI()
+//                .info(new Info().title("Bstagram API")
+//                        .description("BMW 프로젝트 API 명세서입니다.")
+//                        .version("v0.0.1"));
+//    }
 //    private DataSource dataSource;
 
-    @PersistenceContext
-    private EntityManager em;
+    // @PersistenceContext
+    // private EntityManager em;
 
     // private final MemberRepository memberRepository;
     // private final DataSource dataSource;
@@ -41,12 +57,15 @@ public class SpringConfig {
 //    }
 
 
-    @Bean
-    public MemberRepository memberRepository(){
-//        return new MemoryMemberRepository();
-//        return new JdbcMemberRepository(dataSource);
-       return new JdbcTemplateMemberRepository();
-        // return new JpaMemberRepository(em);
-    }
+    // @Bean
+    // public MemberRepository memberRepository(){
+    //     // return new MemoryMemberRepository();
+    //     // return new JdbcMemberRepository(dataSource);
+    //     //  return new JdbcTemplateMemberRepository();
+    //     // return new JpaMemberRepository(em);
+    //     return new SpringDataJpaMemberRepository() {
+            
+    //     };
+    // }
 
 }

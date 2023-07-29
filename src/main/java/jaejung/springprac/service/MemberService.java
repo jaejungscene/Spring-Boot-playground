@@ -1,8 +1,12 @@
 package jaejung.springprac.service;
 
 import jaejung.springprac.domain.member.Member;
+import jaejung.springprac.domain.member.MemberDto;
 import jaejung.springprac.repository.MemberRepository;
 import jaejung.springprac.repository.MemoryMemberRepository;
+import jaejung.springprac.repository.SpringDataJpaMemberRepository;
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,31 +14,28 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Transactional
 @Service
+@Transactional
+@RequiredArgsConstructor
 public class MemberService {
-    @Autowired
     private final MemberRepository memberRepository;
-
-    public MemberService(MemberRepository memberRepository){
-        this.memberRepository = memberRepository;
-        System.out.println("this.memberRepository.hashCode() & getClass():   "
-                + "< " + this.memberRepository.hashCode() + " ,  "
-                + this.memberRepository.getClass() + " >");
-    }
+//    final private SpringDataJpaMemberRepository memberRepository;
     /**
      * 회원가입
      */
-    public Long join(Member member){
+    public MemberDto registerMember(MemberDto member){
         // 같은 이름이 있는 중복 회원X
         validateDuplicateMember(member);
-        memberRepository.save(member);
-        return member.getId();
+        return EntityToDto(
+                memberRepository.save(
+                        DtoToEntity(member)
+                )
+        );
     }
 
 
-    private void validateDuplicateMember(Member member){
-        memberRepository.findByName(member.getName())
+    private void validateDuplicateMember(MemberDto member){
+        memberRepository.findByName(DtoToEntity(member).getName())
                 .ifPresent(m -> {
                     throw new IllegalStateException("이미 존재하는 회원입니다.");
                 });
@@ -43,11 +44,62 @@ public class MemberService {
     /**
      * 전체 회원 조회
      */
-    public List<Member> findMembers(){
-        return memberRepository.findAll();
+    public List<MemberDto> findAllMembers(){
+        return memberRepository.findAll()
+                .stream()
+                .map(this::EntityToDto)
+                .toList();
     }
 
-    public Optional<Member> findOne(Long memberId){
-        return memberRepository.findById(memberId);
+    public MemberDto findOneBy(Long memberId){
+        Optional member = memberRepository.findById(memberId);
+        if(member.isEmpty())
+            return null;
+        return this.EntityToDto((Member)member.get());
+    }
+
+    public MemberDto findOneBy(String name){
+        Optional member = memberRepository.findByName(name);
+        if(member.isEmpty())
+            return null;
+        return this.EntityToDto((Member)member.get());
+    }
+
+//    public List<MemberDto> findAllBy(Integer age) {
+//        return memberRepository.findByAge()
+//    }
+
+    public MemberDto deleteOneMemberById(Long memberId){
+        Optional member = memberRepository.findById(memberId);
+        if(member.isEmpty())
+            return null;
+        return this.EntityToDto((Member)member.get());
+    }
+
+    private MemberDto EntityToDto(Member member){
+//        return new MemberDto(
+//                member.getId(),
+//                member.getName(),
+//                member.getAge(),
+//                member.getBirthDate(),
+//                member.getGender()
+//        );
+        return MemberDto.builder()
+                .id(member.getId())
+                .name(member.getName())
+                .age(member.getAge())
+                .birthDate(member.getBirthDate())
+                .gender(member.getGender())
+                .build();
+    }
+
+    private Member DtoToEntity(MemberDto member){
+        return Member.builder()
+                .id(member.id())
+                .name(member.name())
+                .age(member.age())
+                .birthDate(member.birthDate())
+                .gender(member.gender())
+                .build();
     }
 }
