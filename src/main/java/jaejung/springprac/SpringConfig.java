@@ -1,16 +1,7 @@
 package jaejung.springprac;
 
-import jaejung.springprac.aop.TimeTraceAop;
-import jaejung.springprac.repository.*;
-import jaejung.springprac.service.MemberService;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import jaejung.springprac.*;
 import org.springframework.context.annotation.Configuration;
-
-
-import javax.sql.DataSource;
 
 @Configuration
 public class SpringConfig {
@@ -57,15 +48,13 @@ public class SpringConfig {
 //    }
 
 
-    // @Bean
-    // public MemberRepository memberRepository(){
-    //     // return new MemoryMemberRepository();
-    //     // return new JdbcMemberRepository(dataSource);
-    //     //  return new JdbcTemplateMemberRepository();
-    //     // return new JpaMemberRepository(em);
-    //     return new SpringDataJpaMemberRepository() {
-            
-    //     };
-    // }
+//     @Bean
+//     public MemberRepository memberRepository(){
+//         // return new MemoryMemberRepository();
+//         // return new JdbcMemberRepository(dataSource);
+//         //  return new JdbcTemplateMemberRepository();
+//         // return new JpaMemberRepository(em);
+////         return new JdbcTemplateMemberRepository();
+//     }
 
 }

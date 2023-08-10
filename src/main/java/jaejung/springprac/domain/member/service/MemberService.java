@@ -1,21 +1,16 @@
-package jaejung.springprac.service;
+package jaejung.springprac.domain.member.service;
 
 import jaejung.springprac.domain.member.Member;
 import jaejung.springprac.domain.member.MemberDto;
-import jaejung.springprac.repository.MemberRepository;
-import jaejung.springprac.repository.MemoryMemberRepository;
-import jaejung.springprac.repository.SpringDataJpaMemberRepository;
+import jaejung.springprac.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional
 @RequiredArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;
@@ -102,4 +97,6 @@ public class MemberService {
                 .gender(member.gender())
                 .build();
     }
+
+
 }

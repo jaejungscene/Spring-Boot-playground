@@ -1,18 +1,14 @@
 package jaejung.springprac;
 
-import jaejung.springprac.domain.member.Member;
-import jaejung.springprac.repository.MemoryMemberRepository;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import jaejung.springprac.domain.employee.Employee;
 import org.junit.jupiter.api.Test;
+import jakarta.persistence.*;
+
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static java.util.concurrent.CompletableFuture.anyOf;
-import static org.assertj.core.api.FactoryBasedNavigableListAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -21,6 +17,29 @@ interface MyRowMapper<T>{
 }
 
 class JustTest {
+    @Test
+    void JPATest(){
+        int check = 1;
+        EntityManagerFactory embfactory = Persistence.createEntityManagerFactory("basicjpa");
+        EntityManager entityManager = embfactory.createEntityManager();
+        EntityTransaction entityTransaction = entityManager.getTransaction();
+
+        entityTransaction.begin();
+        System.out.println("check"+check++);
+        Employee emp = Employee.builder()
+                .id(12L)
+                .name("jaejung")
+                .build();
+        System.out.println("check"+check++);
+        entityManager.persist(emp);
+        System.out.println("check"+check++);
+        entityTransaction.commit();
+        System.out.println("check"+check++);
+        entityManager.close();
+        System.out.println("check"+check++);
+        embfactory.close();
+        System.out.println("check"+check++);
+    }
     @Test
     void findAny_findFirst() {
         List<String> list = Arrays.asList("A","B","C","D");

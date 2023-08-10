@@ -1,6 +1,4 @@
-package jaejung.springprac.repository;
-
-import org.springframework.stereotype.Repository;
+package jaejung.springprac.domain.member.repository;
 
 import jaejung.springprac.domain.member.Member;
 

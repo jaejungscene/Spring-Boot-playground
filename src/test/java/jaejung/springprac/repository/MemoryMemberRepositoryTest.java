@@ -1,14 +1,5 @@
 package jaejung.springprac.repository;
 
-import jaejung.springprac.domain.member.Member;
-import jaejung.springprac.repository.MemberRepository;
-import jaejung.springprac.repository.MemoryMemberRepository;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 
 public class MemoryMemberRepositoryTest {
     // MemoryMemberRepository repository = new MemoryMemberRepository();

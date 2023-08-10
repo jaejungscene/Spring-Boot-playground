@@ -1,19 +1,12 @@
-package jaejung.springprac.repository;
+package jaejung.springprac.domain.member.repository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
-import org.springframework.stereotype.Repository;
 
-import jaejung.springprac.domain.Gender;
 import jaejung.springprac.domain.member.Member;
 
-import javax.sql.DataSource;
-
-import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,13 +14,14 @@ import java.util.Optional;
 
 
 // @Repository
+// @RequiredArgsConstructor
 public class JdbcTemplateMemberRepository implements MemberRepository{
-    @Autowired
+//    @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    // public JdbcTemplateMemberRepository(DataSource datasource) {
-    //     this.jdbcTemplate = new JdbcTemplate(datasource);
-    // }
+//     public JdbcTemplateMemberRepository(DataSource datasource) {
+//         this.jdbcTemplate = new JdbcTemplate(datasource);
+//     }
 
     @Override
     public Member save(Member member) {
@@ -71,5 +65,17 @@ public class JdbcTemplateMemberRepository implements MemberRepository{
                                 .gender(rs.getString("gender"))
                                 .build();
             return member;
-        }; }
+        };
+    }
+
+//     @PostConstruct
+//     public void init() throws Exception
+//     {
+//         System.out.println(">>> %s init()".formatted(this.getClass().getName()));
+//     }
+//     @PreDestroy
+//     public void destroy() throws Exception
+//     {
+//         System.out.println(">>> %s destroy()".formatted(this.getClass().getName()));
+//     }
 }
