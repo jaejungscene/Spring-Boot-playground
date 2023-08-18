@@ -1,4 +1,4 @@
-package jaejung.springprac;
+package jaejung.springprac.config;
 
 import jaejung.springprac.*;
 import org.springframework.context.annotation.Configuration;
