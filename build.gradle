@@ -14,21 +14,38 @@ repositories {
 
 dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-web')
-	implementation('org.springframework.boot:spring-boot-starter-data-jpa') // jdbc, hibernate
+
+	// jdbc, hibernate
+	implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+
+	// template engine
 	implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
-//	implementation('org.springdoc:springdoc-openapi-ui:1.6.12')
-//	implementation('org.springframework.boot:spring-boot-starter-parent:3.0.6')
-	implementation('io.springfox:springfox-boot-starter:3.0.0') // swagger
+
+	// validation kit
+	implementation('org.springframework.boot:spring-boot-starter-validation')
+
+	// spring security
+	implementation('org.springframework.boot:spring-boot-starter-security')
+
+	//redis
+	implementation('org.springframework.boot:spring-boot-starter-data-redis:3.1.2')
+	implementation('org.springframework.session:spring-session-data-redis:3.1.1')
+
+	// swagger
+	implementation('io.springfox:springfox-boot-starter:3.0.0')
+
+	implementation('com.googlecode.json-simple:json-simple:1.1.1')
+	implementation('com.google.code.gson:gson:2.10.1')
 
 	annotationProcessor('org.projectlombok:lombok')
 
     // developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	// runtimeOnly('com.h2database:h2')
 	compileOnly('org.projectlombok:lombok')
 	runtimeOnly('mysql:mysql-connector-java:8.0.25')
+	// runtimeOnly('com.h2database:h2')
 
 	testImplementation('org.projectlombok:lombok')
-	testImplementation('org.springframework.boot:spring-boot-starter-test')
+	testImplementation('org.springframework.boot:spring-boot-starter-test') //JUnit
 }
 
 tasks.named('test') {

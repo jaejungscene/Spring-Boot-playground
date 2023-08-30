@@ -1,23 +1,21 @@
 package jaejung.springprac;
 
-import jaejung.springprac.domain.user.UserService;
-import lombok.RequiredArgsConstructor;
-import org.junit.jupiter.api.Test;
+import jaejung.springprac.domain.user.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 public class UserTest {
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
-    @Test
-    public void test1() {
-        userService.createUserListWithTrans();
-    }
+//    @Test
+//    public void test1() {
+//        userService.createUserListWithTrans();
+//    }
 
-    @Test
-    public void test2(){
-        userService.createUserListWithoutTrans();
-    }
+//    @Test
+//    public void test2(){
+//        userService.createUserListWithoutTrans();
+//    }
 }

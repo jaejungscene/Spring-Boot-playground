@@ -19,7 +19,7 @@ public class AccountController {
             @RequestParam("to") Long to,
             @RequestParam("amount") Long amount
     ){
-        accountService.transferMoney(from, to, amount);
+        accountService.transfer(from, to, amount);
     }
 
     @PostMapping("/save")
@@ -28,12 +28,12 @@ public class AccountController {
         accountService.register(acc);
     }
 
-    @GetMapping("/plus")
-    public void plusMoney(
-            @RequestParam("id") Long id,
-            @RequestParam("amount") Long amount){
-        accountService.plusMoney(id, amount);
-    }
+//    @GetMapping("/plus")
+//    public void plusMoney(
+//            @RequestParam("id") Long id,
+//            @RequestParam("amount") Long amount){
+//        accountService.plusMoney(id, amount);
+//    }
 
     @GetMapping("/name")
     public void changeName(

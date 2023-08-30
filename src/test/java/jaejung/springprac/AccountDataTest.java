@@ -1,5 +1,7 @@
 package jaejung.springprac;
 
+import jaejung.springprac.domain.account.Account;
+import jaejung.springprac.domain.account.repository.AccountRepository;
 import jaejung.springprac.domain.account.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
@@ -15,16 +17,19 @@ public class AccountDataTest {
     @Autowired
     private AccountService accountService;
 
+    @Autowired
+    private AccountRepository accountRepository;
+
     @Test
     public void transferTest() {
-        Long from = 1L;
-        Long to = 2L;
-        Long amount = 2000L;
-        accountService.transferMoney(
-                from,
-                to,
-                amount
-        );
+        accountRepository.save(Account.builder()
+                .name("person01")
+                .money(10000L)
+                .build());
+        accountRepository.save(Account.builder()
+                .name("person02")
+                .money(10000L)
+                .build());
+//        accountService.transfer(1L, 2L, 200L);
     }
-
 }

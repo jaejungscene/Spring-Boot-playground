@@ -12,35 +12,28 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@Configuration
-@EnableWebSecurity
-public class SecurityConfig{
-    @Bean
-    protected SecurityFilterChain webSecurityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeHttpRequests()
-                .requestMatchers("/user/**").authenticated()
-                .requestMatchers("/manager/**").hasAnyRole("admin", "manager")
-                .requestMatchers("/admin/**").hasRole("admin")
-                .anyRequest().permitAll()
-            .and()
-                .formLogin()
-                .loginPage("/login");
-//        http.authorizeHttpRequests((authz)->
-//        {
-//            try {
-//                authz
-//                        .requestMatchers("/user/**").authenticated()
-//                        .requestMatchers("/manager/**").hasAnyRole("manager", "admin")
-//                        .requestMatchers("/admin/**").hasRole("admin")
-//                        .anyRequest().permitAll()
-//                        .and()
-//                        .formLogin()
-//                        .loginPage("/login");
-//            } catch (Exception e) {
-//                throw new RuntimeException(e);
-//            }
-//        });
-        return http.build();
-    }
+//@Configuration
+//@EnableWebSecurity
+public class SecurityConfig {
+//    @Bean
+//    public WebSecurityCustomizer webSecurityCustomizer(){
+//        return (web) -> web.ignoring().requestMatchers("/user/**");
+//    }
+
+//    @Bean
+//    protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//        http
+//                .authorizeHttpRequests()
+//                .requestMatchers("/user/**").authenticated()
+//                .requestMatchers("/manager/**").hasAnyRole("admin", "manager")
+//                .requestMatchers("/admin/**").hasRole("admin")
+//                .anyRequest().permitAll()
+//            .and()
+//                .formLogin()
+//                .loginPage("/loginForm")
+//            .and()
+//                .csrf().disable();
+//
+//        return http.build();
+//    }
 }
