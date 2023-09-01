@@ -1,5 +1,6 @@
 package jaejung.springprac.controller;
 
+import jaejung.springprac.service.RedisService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -10,41 +11,40 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/redis")
 public class RedisSessionController {
-    private final StringRedisTemplate stringRedisTemplate;
+    private final RedisService redisService;
+    private final String key = "sessionAccessKey";
 
-    @GetMapping("/setFruit")
-    public String setFruit(@RequestParam String name) {
-        ValueOperations<String, String> ops = stringRedisTemplate.opsForValue();
-        ops.set("fruit", name);
+    @GetMapping("/session/creation")
+    public String createSession(HttpSession session, @RequestParam String name) {
+        System.out.println("-----------------> controller 02");
+        session.setAttribute(key, name);
         return "saved.";
     }
 
-    @GetMapping("/getFruit")
-    public String setFruit() {
-        ValueOperations<String, String> ops = stringRedisTemplate.opsForValue();
-        String fruitName = ops.get("fruit");
-        return fruitName;
+    @GetMapping("/session")
+    public String getSession(HttpSession session) {
+        System.out.println("-----------------> controller 01");
+        String result = (String)session.getAttribute(key);
+        return result;
     }
 
 
 
 
-
-
-    @GetMapping("/login")
-    public String login(HttpSession session, @RequestParam String name) {
-        session.setAttribute("name", name);
+    @GetMapping("/set")
+    public String setKeyValue(@RequestParam String name, @RequestParam String value) {
+        redisService.setKeyValue(name, value);
         return "saved.";
     }
 
-    @GetMapping("/my-name")
-    public String myName(HttpSession session) {
-        String myName = (String)session.getAttribute("name");
-        return myName;
+    @GetMapping("/get")
+    public String getValue(@RequestParam String name) {
+        return redisService.getValueBy(name);
     }
 }

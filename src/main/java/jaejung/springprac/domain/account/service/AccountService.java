@@ -16,6 +16,7 @@ public class AccountService {
     private final AccountRepository accountRepository;
     private final OtherService otherService;
 
+
     public void register(Account account){
         accountRepository.save(account);
     }
