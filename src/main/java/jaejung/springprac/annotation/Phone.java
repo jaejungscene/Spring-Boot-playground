@@ -1,5 +1,6 @@
-package jaejung.springprac.domain;
+package jaejung.springprac.annotation;
 
+import jaejung.springprac.domain.PhoneValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
